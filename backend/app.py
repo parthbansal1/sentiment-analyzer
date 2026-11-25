@@ -14,11 +14,13 @@ vectorizer = joblib.load("tfidf_vectorizer.pkl")
 
 def clean_text(text):
   text = str(text).lower()
+  text = re.sub(
+      r"n't\b", " not", text
+  )  # converts "don't", "isn't", "wasn't" -> "do not", "is not"
   text = re.sub(r"<br\s*/?>", " ", text)
   text = re.sub(r"http\S+|www\S+", "", text)
   text = re.sub(r"[^a-z\s]", "", text)
-  text = re.sub(r"\s+", " ", text).strip()
-  return text
+  return re.sub(r"\s+", " ", text).strip()
 
 
 @app.route("/", methods=["GET"])
