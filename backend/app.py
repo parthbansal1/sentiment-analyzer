@@ -44,9 +44,9 @@ def predict():
   pos_prob = float(probs[1])
 
   # Classify into Positive, Neutral, or Negative using sigmoid probability
-  if pos_prob >= 0.65:
+  if pos_prob >= 0.75:
     sentiment = "Positive"
-  elif pos_prob <= 0.40:
+  elif pos_prob <= 0.50:
     sentiment = "Negative"
   else:
     sentiment = "Neutral"
